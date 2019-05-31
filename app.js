@@ -30,6 +30,10 @@ app.get('/login', (req,res) => {
     res.render('login', {layout: false});
  });
 
+app.get('/signup', (req, res) => {
+    res.render('signup', {layout: false});
+});
+
 app.listen(3000, () => {
     console.log("Web Server running on Port 3000");
 });
