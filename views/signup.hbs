@@ -16,78 +16,87 @@
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
-    <link href="/css/material-kit.css?v=2.0.5" rel="stylesheet" /> 
-    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/css/material-kit.css?v=2.0.5" rel="stylesheet" />
+    <!-- <link href="/css/sb-admin-2.min.css" rel="stylesheet"> -->
 
 </head>
 
 <body>
-    <div class="card card-login h-75">
-        <!-- Form -->
-        <form class="form" method="" action="">
-            <div class="card-header card-header-rose text-center">
-                <h4 class="card-title">Login</h4>
-            </div>
-            <div class="card-body">
-                <div class="container w-25">
-                    <div class="card o-hidden border-0 shadow-lg my-5">
-                        <div class="card-body p-0">
-                            <!-- Nested Row within Card Body -->
-                            <div class="row">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Đăng kí tài khoản mới</h1>
+    <div class="page-header header-filter"
+        style="background-image: url('/img/bg5.png'); background-size: cover; background-position: top center;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+                    <div class="card card-login">
+                        <div class="card-header card-header-rose text-center">
+                            <h4 class="card-title">Đăng kí tài khoản</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row ml-auto">
+
+                                <form class="user">
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <input type="text" class="form-control form-control-user"
+                                                id="exampleFirstName" placeholder="Họ">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control form-control-user"
+                                                id="exampleLastName" placeholder="Tên">
+                                        </div>
                                     </div>
-                                    <form class="user">
-                                        <div class="form-group row">
-                                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input type="text" class="form-control form-control-user"
-                                                    id="exampleFirstName" placeholder="First Name">
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control form-control-user"
-                                                    id="exampleLastName" placeholder="Last Name">
-                                            </div>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control form-control-user"
+                                            id="exampleInputEmail" placeholder="Email">
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <input type="password" class="form-control form-control-user"
+                                                id="exampleInputPassword" placeholder="Mật khẩu">
                                         </div>
-                                        <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" placeholder="Email Address">
+                                        <div class="col-sm-6">
+                                            <input type="password" class="form-control form-control-user"
+                                                id="exampleRepeatPassword" placeholder="Nhập lại mật khẩu">
                                         </div>
-                                        <div class="form-group row">
-                                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input type="password" class="form-control form-control-user"
-                                                    id="exampleInputPassword" placeholder="Password">
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <input type="password" class="form-control form-control-user"
-                                                    id="exampleRepeatPassword" placeholder="Repeat Password">
-                                            </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-5">
+                                                <a href="/" class="btn btn-primary">
+                                                    <i class="material-icons">home</i> Trang chủ
+                                                </a>
                                         </div>
-                                        <a href="login.html" class="btn btn-primary btn-user btn-block">
-                                            Register Account
-                                        </a>
-                                        <hr>
-                                        <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Register with Google
-                                        </a>
-                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                                        </a>
-                                    </form>
+                                        <div class="col-7">
+                                                <a href="/login" class="btn btn-primary">
+                                                    Đăng kí tài khoản
+                                                </a>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="text-center">
+                                        <a class="small" href="/login">Bạn đã có tài khoản? Đăng nhập</a>
+                                    </div>
                                     <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="login.html">Already have an account? Login!</a>
-                                    </div>
+                                    <a href="/" class="btn btn-danger btn-block">
+                                        <i class="material-icons"></i> Đăng kí bằng Google
+                                    </a>
+                                    <a href="/" class="btn btn-info btn-block">
+                                        <i class="material-icons"></i> Đăng kí bằng Facebook
+                                    </a>
+                                </form>
+                                <hr>
+                                <div class="text-center">
+                                    <a class="small" href="/forgotpassword">Quên mật khẩu?</a>
                                 </div>
+
+
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 
 

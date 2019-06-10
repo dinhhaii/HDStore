@@ -18,6 +18,10 @@ app.set('view engine', 'hbs');
 
 app.use('/', express.static(publicPath));
 
+app.use('/categorylist', (req, res) => {
+    res.render('categorylist');
+})
+
 app.get('/', (req,res) => {
    res.render('index');
 });
@@ -33,6 +37,16 @@ app.get('/login', (req,res) => {
 app.get('/signup', (req, res) => {
     res.render('signup', {layout: false});
 });
+
+app.get('/contact', (req, res) => {
+    res.render('contact');
+});
+
+app.get('/cart', (req, res) => {
+    res.render('cart');
+});
+
+app.use('/admin', require('./routes/admin/admin.route'));
 
 app.listen(3000, () => {
     console.log("Web Server running on Port 3000");

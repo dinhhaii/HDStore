@@ -1,26 +1,70 @@
+{{#unless isAdmin}}
 <div class="card card-nav-tabs card-plain">
-    <div class="card-header card-header-danger">Category
-        <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+    <div class="card-header card-header-danger">Thể loại
+
     </div>
     <div class="card-body ">
         <table class="table table-hover">
             <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+                <th scope="row">Hành động</th>
             </tr>
             <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
+                <th scope="row">Thể thao</th>
             </tr>
             <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
+                <th scope="row">Chiến thuật</th>
             </tr>
         </table>
     </div>
 </div>
+{{else}}
+<link href="/css/sb-admin-2.min.css" rel="stylesheet">
+<ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">QUẢN LÝ</div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Chuyên mục
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link" href="/admin/category">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Quản lý thể loại</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/admin/category">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Quản lý người dùng</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/admin/category">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Quản lý nhãn</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/admin/category">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Quản lý sản phẩm</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+</ul>
+
+{{/unless}}
