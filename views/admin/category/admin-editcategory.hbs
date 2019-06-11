@@ -1,0 +1,50 @@
+<div class="card card-nav-tabs mt-5">
+    <div class="card-header card-header-success">
+        <div class="row">
+            <div class="col-6">
+                <h4 style="color: black"><b>Chỉnh sửa thể loại</b></h4>
+            </div>
+        </div>
+    </div>
+    {{#if error}}
+        <div class="alert alert-danger" role="alert">
+            Có lỗi xảy ra. <a href="/admin/category" class="alert-link">Quay trở lại</a>
+        </div>
+    {{else}}
+        <div class="card-body ">
+            <form class="contact-form" method="post" action="/admin/editcategory">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="bmd-label-floating mb-1">ID thể loại</label>
+                            <input readonly type="text" class="form-control" name="id" value="{{category.id}}">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Nhập tên thể loại</label>
+                            <input type="text" class="form-control" name="name" value="{{category.name}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <button class="btn btn-primary btn-raised" onclick="location.href='/admin/category';"  style="width: 120px">
+                            Trở lại
+                        </button>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary btn-raised" type="submit" formaction="/admin/deletecategory" style="width: 120px"> 
+                            Xóa
+                        </button>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary btn-raised" type="submit" style="width: 120px">
+                            Lưu lại
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    {{/if}}
+</div>
