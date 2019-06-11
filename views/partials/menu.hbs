@@ -9,10 +9,9 @@
                             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Thể loại</a>
                             <div class="dropdown-menu">
                                 <!-- <h6 class="dropdown-header">Dropdown header</h6> -->
-                                <a href="#pablo" class="dropdown-item">Hành động</a>
-                                <a href="#pablo" class="dropdown-item">Chiến thuật</a>
-                                <a href="#pablo" class="dropdown-item">Phiêu lưu</a>
-                                <a href="#pablo" class="dropdown-item">Đua xe</a>
+                                {{#each categories}}
+                                <a href="/category/{{id}}" class="dropdown-item">{{name}}</a>
+                                {{/each}}
                                 <div class="dropdown-divider"></div>                               
                             </div>
                         </li>
@@ -26,7 +25,7 @@
                         </li>
 
                         <li class="nav-item" style="white-space: nowrap">
-                            <a href="#" class="nav-link">Liên lạc</a>
+                            <a href="/contact" class="nav-link">Liên lạc</a>
                         </li>
 
                         <li class="dropdown nav-item" style="white-space: nowrap">

@@ -7,6 +7,14 @@ const publicPath = './assets';
 //app.use(express.json());
 //app.use(express.urlencode());
 
+var hbscontent = {
+    isLogin: false,
+    username: '',
+    currentIDUser: 0,
+    currentPage: '/',
+    title: ''
+}
+
 app.engine('hbs', exphbs({
     extname: 'hbs',
     defaultLayout: 'main.hbs',
@@ -18,36 +26,15 @@ app.set('view engine', 'hbs');
 
 app.use('/', express.static(publicPath));
 
-app.use('/categorylist', (req, res) => {
-    res.render('categorylist');
-})
+//Routing
+app.use('/', require('./routes/index'));
 
-app.get('/', (req,res) => {
-   res.render('index');
-});
-
-app.get('/singleproduct', (req,res) => {
-    res.render('singleproduct');
- });
-
-app.get('/login', (req,res) => {
-    res.render('login', {layout: false});
- });
-
-app.get('/signup', (req, res) => {
-    res.render('signup', {layout: false});
-});
-
-app.get('/contact', (req, res) => {
-    res.render('contact');
-});
-
-app.get('/cart', (req, res) => {
-    res.render('cart');
-});
+app.use('/login', require('./routes/login.route'));
 
 app.use('/admin', require('./routes/admin/admin.route'));
 
 app.listen(3000, () => {
     console.log("Web Server running on Port 3000");
 });
+
+module.exports = hbscontent;

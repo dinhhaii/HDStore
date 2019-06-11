@@ -5,15 +5,11 @@
     </div>
     <div class="card-body ">
         <table class="table table-hover">
-            <tr>
-                <th scope="row">Hành động</th>
+            {{#each categories}}
+            <tr onclick="window.location='/category/{{id}}'">
+                <th scope="row">{{name}}</th>
             </tr>
-            <tr>
-                <th scope="row">Thể thao</th>
-            </tr>
-            <tr>
-                <th scope="row">Chiến thuật</th>
-            </tr>
+            {{/each}}    
         </table>
     </div>
 </div>
