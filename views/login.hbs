@@ -31,7 +31,6 @@
                 <div class="col-lg-4 col-md-6 ml-auto mr-auto">
                     <div class="card card-login h-75">
                         <!-- Form -->
-
                         <div class="card-header card-header-rose text-center">
                             <h4 class="card-title">Đăng nhập</h4>
                         </div>
@@ -63,9 +62,21 @@
                                             class="material-icons">home</i> Trang chủ</a>
                                     <button class="btn btn-danger btn-round" type="submit">Đăng nhập</button>
                                 </div>
-                                <p class="description text-center">Nếu bạn chưa có tài khoản. Bấm vào <a
-                                        href="/signup">Đăng
-                                        kí</a>.</p>
+                                <p class="description text-center">Nếu bạn chưa có tài khoản. Bấm vào <a href="/signup">Đăng kí</a>.</p>
+
+                                {{#if isErrorLogin}}
+                                <div class="alert alert-danger">
+                                    <div class="container">
+                                        <div class="alert-icon">
+                                            <i class="material-icons">warning</i>
+                                        </div>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                                        </button>
+                                        Đăng nhập thất bại, bạn nhập sai tài khoản hoặc mật khẩu
+                                    </div>
+                                </div>
+                                {{/if}}
 
                             </div>
                         </form>

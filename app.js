@@ -13,7 +13,8 @@ var hbscontent = {
     username: '',
     currentIDUser: 0,
     currentPage: '/',
-    title: ''
+    title: '',
+    isAdmin: false
 }
 
 app.engine('hbs', exphbs({
@@ -31,7 +32,8 @@ app.use('/', express.static(publicPath));
 app.use('/', require('./routes/index'));
 
 app.use('/login', require('./routes/login.route'));
-
+app.use('/signup', require('./routes/signup.route'));
+app.use('/category', require('./routes/category.route'));
 app.use('/admin', require('./routes/admin/admin.route'));
 
 app.listen(3000, () => {

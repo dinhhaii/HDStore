@@ -13,6 +13,13 @@ router.get('/', (req,res,next) => {
     .catch(next);
 });
 
+router.post('/logout', (req, res, next) => {
+    hbscontent.isLogin = false;
+    hbscontent.username = '';
+
+    res.redirect('/');
+})
+
 router.use('/categorylist', (req, res) => {
     res.render('categorylist');
 })

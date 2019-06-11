@@ -4,10 +4,16 @@ var hbscontent = require('../app');
 var userModel = require('../models/user.model');
 
 router.get('/', (req, res) => {
-    res.render('login', {
-        layout: false,
-        title: "Đăng nhập"
-    });
+    if(hbscontent.isLogin == true){
+        res.redirect('/');
+    }
+    else{
+        res.render('login', {
+            layout: false,
+            title: "Đăng nhập",
+            isErrorLogin: false
+        });
+    }    
 });
 
 router.post('/', (req, res, next) => {
@@ -22,11 +28,17 @@ router.post('/', (req, res, next) => {
                     res.render('index', hbscontent);
                 }
                 else {
-                    next();
+                    res.render('login',{
+                        layout: false,
+                        isErrorLogin: true
+                    });
                 }
             }
             else {
-                next();
+                res.render('login',{
+                    layout: false,
+                    isErrorLogin: true
+                });
             }
         })
         .catch(next);

@@ -34,31 +34,47 @@
                         <div class="card-body">
                             <div class="row ml-auto">
 
-                                <form class="user">
-                                    <div class="form-group row">
-                                        <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="text" class="form-control form-control-user"
-                                                id="exampleFirstName" placeholder="Họ">
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control form-control-user"
-                                                id="exampleLastName" placeholder="Tên">
-                                        </div>
+                                <form class="user" method="POST">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control form-control-user" name="username" placeholder="Tên tài khoản">
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user"
-                                            id="exampleInputEmail" placeholder="Email">
+                                        <input type="email" name="email" class="form-control form-control-user" placeholder="Email">
                                     </div>
+                                    <div class="form-group">
+                                        <input type="radio" name="gender" value="Nam" checked> Nam
+                                        <input type="radio" name="gender" value="Nữ"> Nữ
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="date" name="dob" class="form-control datetimepicker" placeholder="Ngày sinh">
+                                    </div>
+                                    
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="password" class="form-control form-control-user"
+                                            <input type="password" name="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Mật khẩu">
                                         </div>
                                         <div class="col-sm-6">
-                                            <input type="password" class="form-control form-control-user"
+                                            <input type="password" name="confirmpassword" class="form-control form-control-user"
                                                 id="exampleRepeatPassword" placeholder="Nhập lại mật khẩu">
                                         </div>
                                     </div>
+
+                                    {{#if isErrorSignup}}
+                                    <div class="row">
+                                        <div class="alert alert-danger">
+                                            <div class="container">
+                                                <div class="alert-icon">
+                                                    <i class="material-icons">warning</i>
+                                                </div>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                                                </button>
+                                                Có lỗi xảy ra trong quá trình đăng kí!
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{/if}}
 
                                     <div class="row">
                                         <div class="col-5">
@@ -67,9 +83,7 @@
                                                 </a>
                                         </div>
                                         <div class="col-7">
-                                                <a href="/login" class="btn btn-primary">
-                                                    Đăng kí tài khoản
-                                                </a>
+                                            <button class="btn btn-primary" type="submit"> Đăng kí tài khoản</button>
                                         </div>
                                     </div>
                                     
@@ -88,7 +102,6 @@
                                 <div class="text-center">
                                     <a class="small" href="/forgotpassword">Quên mật khẩu?</a>
                                 </div>
-
 
                             </div>
                         </div>
