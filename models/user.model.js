@@ -5,10 +5,6 @@ module.exports = {
         return db.load('select * from user');
     },
 
-    allWithDetail: () => {
-        return db.load('select c.id, c.name, c.createddate, count(p.id) as totalproduct from user c left join product p on c.id = p.iduser group by c.id, c.name, c.createddate');
-    },
-
     add: (entity) => {
         return db.add('user', entity);
     },
@@ -17,11 +13,15 @@ module.exports = {
         return db.load(`select * from user where id = ${id}`);
     },
 
+    findByUsername: (username) => {
+        return db.load(`select * from user where username = '${username}'`);
+    },
+
     update: (entity) => {
         return db.update('user', 'id', entity);
     },
 
-    delete: (id) => {
+    delete: (id) => {   
         return db.delete('user', 'id', id);
     }
 }

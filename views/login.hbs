@@ -31,18 +31,21 @@
                 <div class="col-lg-4 col-md-6 ml-auto mr-auto">
                     <div class="card card-login h-75">
                         <!-- Form -->
+
+                        <div class="card-header card-header-rose text-center">
+                            <h4 class="card-title">Đăng nhập</h4>
+                        </div>
                         <form class="form" method="post" action="/login">
-                            <div class="card-header card-header-rose text-center">
-                                <h4 class="card-title">Đăng nhập</h4>
-                            </div>
                             <div class="card-body">
+
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
                                             <i class="material-icons">face</i>
                                         </span>
                                     </div>
-                                    <input type="text" name="username" class="form-control" placeholder="Tên tài khoản hoặc Email">
+                                    <input type="text" name="username" class="form-control"
+                                        placeholder="Tên tài khoản hoặc Email">
                                 </div>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -52,17 +55,19 @@
                                     </div>
                                     <input type="password" name="password" class="form-control" placeholder="Mật khẩu">
                                 </div>
-                            </div>
-                            <p class="description text-center"><a href="/forgetpassword">Quên mật khẩu?</a>.</p>
 
-                            <div class="footer text-center mt-3">
-                                <a class="btn btn-danger btn-round" role="button" style="color: white" href="/"> <i
-                                        class="material-icons">home</i> Trang chủ</a>
-                                <button class="btn btn-danger btn-round" type="submit">Đăng nhập</button>
-                            </div>
-                            <p class="description text-center">Nếu bạn chưa có tài khoản. Bấm vào <a
-                                    href="/signup">Đăng kí</a>.</p>
+                                <p class="description text-center"><a href="/forgetpassword">Quên mật khẩu?</a>.</p>
 
+                                <div class="footer text-center mt-3">
+                                    <a class="btn btn-danger btn-round" role="button" style="color: white" href="/"> <i
+                                            class="material-icons">home</i> Trang chủ</a>
+                                    <button class="btn btn-danger btn-round" type="submit">Đăng nhập</button>
+                                </div>
+                                <p class="description text-center">Nếu bạn chưa có tài khoản. Bấm vào <a
+                                        href="/signup">Đăng
+                                        kí</a>.</p>
+
+                            </div>
                         </form>
                         <!-- End Form -->
                     </div>

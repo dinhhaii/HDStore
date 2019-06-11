@@ -4,12 +4,13 @@ var hbscontent = require('../app');
 var categoryModel = require('../models/category.model');
 
 router.get('/', (req,res,next) => {
+    hbscontent.title = "Trang chủ";
     categoryModel.all()
     .then(rows => {
         hbscontent['categories'] = rows;
+        res.render('index', hbscontent);
     })
     .catch(next);
-    res.render('index', hbscontent);
 });
 
 router.use('/categorylist', (req, res) => {

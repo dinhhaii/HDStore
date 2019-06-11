@@ -1,11 +1,12 @@
 var express = require('express');
 var exphbs = require('express-handlebars');
+var morgan = require('morgan');
 var app = express();
 const publicPath = './assets';
 
-//app.use(morgan('dev'));
-//app.use(express.json());
-//app.use(express.urlencode());
+app.use(morgan('dev'));
+app.use(express.json());
+app.use(express.urlencoded());
 
 var hbscontent = {
     isLogin: false,

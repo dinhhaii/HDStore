@@ -4,87 +4,21 @@
     </div>
     <div class="card-body ">
         <div class="row">
+            {{#each newproducts}}
             <div class="col-4">
                 <div class="card bg-dark">
                     <div class="card-body">
                         <h4>PUBG</h4>
-                        <img src="/img/bg1.jpg" height="100" width="150" alt="">
+                        <img src="{{img}}" height="100" width="150" alt="">
                         <h4>Description</h4>
                     </div>
                     <div class="card-footer">
-                        <a class="btn btn-danger">Chi tiết</a>
+                        <a href="/product/{{id}}" class="btn btn-danger">Chi tiết</a>
                         <a class="btn btn-success">Mua</a>
                     </div>
                 </div>
             </div>
-            <div class="col-4">
-                <div class="card bg-dark">
-                    <div class="card-body">
-                        <h4>PUBG</h4>
-                        <img src="/img/bg4.jpg" height="100" width="150" alt="">
-                        <h4>Description</h4>
-                    </div>
-                    <div class="card-footer">
-                        <a class="btn btn-danger">Chi tiết</a>
-                        <a class="btn btn-success">Mua</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card bg-dark">
-                    <div class="card-body">
-                        <h4>PUBG</h4>
-                        <img src="/img/bg5.png" height="100" width="150" alt="">
-                        <h4>Description</h4>
-                    </div>
-                    <div class="card-footer">
-                        <a class="btn btn-danger">Chi tiết</a>
-                        <a class="btn btn-success">Mua</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-4">
-                <div class="card bg-dark">
-                    <div class="card-body">
-                        <h4>PUBG</h4>
-                        <img src="/img/bg1.jpg" height="100" width="150" alt="">
-                        <h4>Description</h4>
-                    </div>
-                    <div class="card-footer">
-                        <a class="btn btn-danger">Chi tiết</a>
-                        <a class="btn btn-success">Mua</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card bg-dark">
-                    <div class="card-body">
-                        <h4>PUBG</h4>
-                        <img src="/img/bg4.jpg" height="100" width="150" alt="">
-                        <h4>Description</h4>
-                    </div>
-                    <div class="card-footer">
-                        <a class="btn btn-danger">Chi tiết</a>
-                        <a class="btn btn-success">Mua</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card bg-dark">
-                    <div class="card-body">
-                        <h4>PUBG</h4>
-                        <img src="/img/bg5.png" height="100" width="150" alt="">
-                        <h4>Description</h4>
-                    </div>
-                    <div class="card-footer">
-                        <a class="btn btn-danger">Chi tiết</a>
-                        <a class="btn btn-success">Mua</a>
-                    </div>
-                </div>
-            </div>
+            {{/each}}
         </div>
 
 
