@@ -13,7 +13,8 @@ var hbscontent = {
     username: '',
     currentIDUser: 0,
     currentPage: '/',
-    title: ''
+    title: '',
+    isAdmin: false
 }
 
 app.engine('hbs', exphbs({

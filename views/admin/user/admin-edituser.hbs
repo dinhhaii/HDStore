@@ -1,0 +1,118 @@
+<div class="card card-nav-tabs mt-5">
+    <div class="card-header card-header-success">
+        <div class="row">
+            <div class="col-6">
+                <h4 style="color: black"><b>Chỉnh sửa người dùng</b></h4>
+            </div>
+        </div>
+    </div>
+    {{#if error}}
+        <div class="alert alert-danger" role="alert">
+            Có lỗi xảy ra. <a href="/admin/user" class="alert-link">Quay trở lại</a>
+        </div>
+    {{else}}
+        <div class="card-body ">
+            <form class="contact-form" method="post" action="/admin/edituser">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">ID người dùng</label>
+                            <input readonly type="text" class="form-control" name="id" value="{{user.id}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Tài khoản</label>
+                            <input type="text" class="form-control" name="username" value="{{user.username}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Mật khẩu</label>
+                            <input type="password" class="form-control" name="password" value="{{user.password}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Tên</label>
+                            <input type="text" class="form-control" name="name" value="{{user.name}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Giới tính</label> <br>
+                            <input type="radio" name="gender" value="{{user.gender}}"> Nam <br>
+                            <input type="radio" name="gender" value="{{user.gender}}"> Nữ <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Ngày sinh</label>
+                            <input type="date" name="dob" value="{{user.dob}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Email</label>
+                            <input type="text" class="form-control" name="email" value="{{user.email}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Số điện thoại</label>
+                            <input type="text"  class="form-control" name="phone" value="{{user.phone}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Địa chỉ</label>
+                            <input type="text" class="form-control" name="address" value="{{user.address}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Vị trí</label> <br>
+                            <input type="radio" name="position" value="{{user.position}}"> admin <br>
+                            <input type="radio" name="position" value="{{user.position}}"> user <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <button class="btn btn-primary btn-raised" onclick="location.href='/admin/user';"  style="width: 120px">
+                            Trở lại
+                        </button>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary btn-raised" type="submit" formaction="/admin/deleteuser" style="width: 120px"> 
+                            Xóa
+                        </button>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary btn-raised" type="submit" style="width: 120px">
+                            Lưu lại
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    {{/if}}
+</div>
