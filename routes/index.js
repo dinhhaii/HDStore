@@ -4,19 +4,26 @@ var hbscontent = require('../app');
 var categoryModel = require('../models/category.model');
 
 router.get('/', (req,res,next) => {
-    hbscontent.title = "Trang chủ";
-    categoryModel.all()
-    .then(rows => {
-        hbscontent['categories'] = rows;
-        res.render('index', hbscontent);
-    })
-    .catch(next);
+    if(hbscontent.isAdmin == true){
+        res.redirect('/admin');
+    }
+    else{
+        hbscontent.title = "Trang chủ";
+        categoryModel.all()
+        .then(rows => {
+            hbscontent['categories'] = rows;
+            res.render('index', hbscontent);
+        })
+        .catch(next);
+    }
+    
 });
 
 router.post('/logout', (req, res, next) => {
     hbscontent.isLogin = false;
     hbscontent.username = '';
-
+    hbscontent.isAdmin = false;
+    
     res.redirect('/');
 })
 

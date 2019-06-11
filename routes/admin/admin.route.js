@@ -6,10 +6,14 @@ var userModel = require('../../models/user.model');
 var hbscontent = require('../../app');
 
 router.get('/', (req, res) => {
-    hbscontent.title = 'Quản trị viên';
-    hbscontent.isAdmin = true;
-    hbscontent.currentPage = req.protocol + '://' + req.get('host') + req.originalUrl;
-    res.redirect('/admin/category');
+    if(hbscontent.isAdmin == true){
+        hbscontent.title = 'Quản trị viên';
+        hbscontent.currentPage = req.protocol + '://' + req.get('host') + req.originalUrl;
+        res.redirect('/admin/category');
+    }
+    else{
+        res.redirect('/');
+    }
 });
 
 // ================================>>> QUẢN LÝ THỂ LOẠI <<<================================
