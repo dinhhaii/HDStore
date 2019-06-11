@@ -25,6 +25,7 @@ router.post('/', (req, res, next) => {
                 if (entity.password == account.password) {
                     hbscontent.isLogin = true;
                     hbscontent.username = entity.name;
+                    hbscontent.currentIDUser = entity.id;
                     if(entity.position == 'admin'){
                         hbscontent.isAdmin = true;
                     }

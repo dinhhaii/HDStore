@@ -23,7 +23,7 @@ router.post('/logout', (req, res, next) => {
     hbscontent.isLogin = false;
     hbscontent.username = '';
     hbscontent.isAdmin = false;
-    
+    hbscontent.currentIDUser = 0;
     res.redirect('/');
 })
 
