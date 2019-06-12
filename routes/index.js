@@ -4,7 +4,7 @@ var hbscontent = require('../app');
 var categoryModel = require('../models/category.model');
 var productModel = require('../models/product.model');
 var cartModel = require('../models/cart.model');
-var detailcartModel = require('../models/detailcart.model');
+var detailCartModel = require('../models/detailcart.model');
 
 router.get('/', (req,res,next) => {
     if(hbscontent.isAdmin == true){
@@ -12,6 +12,7 @@ router.get('/', (req,res,next) => {
     }
     else{
         hbscontent.title = "Trang chủ";
+        hbscontent.cart = [];
         Promise.all([
             categoryModel.all(),
             productModel.latestproduct(9),
@@ -36,84 +37,34 @@ router.post('/logout', (req, res, next) => {
     hbscontent.username = '';
     hbscontent.isAdmin = false;
     hbscontent.currentIDUser = 0;
+    hbscontent.cart = [];
     res.redirect('/');
 })
-
-router.get('/singleproduct', (req,res) => {
-    res.render('singleproduct');
-});
 
 router.get('/contact', (req, res) => {
     res.render('contact');
 });
 
-router.get('/cart/:id', (req, res) => {
-    var id = req.params.id;
-    console.log(id);
-    cartModel.findIdUser(id)
-    .then(rows => {
-        var amountproduct = 0;
-        var money = 0;
-        detailcartModel.single(rows[0].id)
-        .then(listidproduct => {
-            listidproduct.forEach(element => {
-                productModel.single(element.idproduct)
-                .then(temps => {
-                    hbscontent['products'] = temps;
-                    if (element.discount == 0){
-                        money = money + element.price;                        }
-                    else {
-                        money = money + (element.price*(100 - element.discount)/100);
-                    }
-                    amountproduct =  amountproduct + 1;
-                })
-                .catch(err => {
-                    console.log(err);
-                    res.end('Error occured1');
-                });
-            });
-        })
-        .catch(err => {
-            console.log(err);
-            res.end('Error occured2');
-        });
-        hbscontent['cart'] = rows;
-        if (amountproduct >= 5 && amountproduct <= 10)
-        {
-            rows.forEach(element => {
-                element['amount'] = amountproduct;
-                element['discount'] = 5;
-                element['discountedtotal'] = money;
-                element['total'] = (money*(100 - element.discount)/100);
-                cartModel.update(element).then().catch(err => { console.log(err)});
-            });
-        }
-        if (amountproduct < 5)
-        {
-            rows.forEach(element => {
-                element['amount'] = amountproduct;
-                element['discount'] = 0;
-                element['discountedtotal'] = money;
-                element['total'] = money;
-                cartModel.update(element).then().catch(err => { console.log(err)});
-            });
-        }
-        if (amountproduct > 10)
-        {
-            rows.forEach(element => {
-                element['amount'] = amountproduct;
-                element['discount'] = 10;
-                element['discountedtotal'] = money;
-                element['total'] = (money*(100 - element.discount)/100);
-                cartModel.update(element).then().catch(err => { console.log(err)});
-            });
-        }
+router.get('/cart', (req, res) => {
     res.render('cart', hbscontent);
-    })
-    .catch(err => {
-        console.log(err);
-        res.end('Error occured3');
+});
+
+router.get('/cart/:productid', (req, res, next) => {
+    var productid = req.params.productid;
+    productModel.single(productid)
+    .then(rows => {
+        hbscontent.cart.push(rows[0]);
+    }).catch(next);
+
+    var sum = 0;
+    hbscontent.cart.forEach(element => {
+        sum += element.price * (100 - element.discount) / 100;
     });
+    hbscontent['sumbill'] = sum;
+    hbscontent['discountbill'] = 0;
+    hbscontent['totalbill'] = hbscontent['sumbill'] * (100 - hbscontent['discountbill']) / 100;
+
+    res.redirect('/cart');
 });
 
 module.exports = router;

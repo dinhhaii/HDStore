@@ -16,7 +16,8 @@ var hbscontent = {
     currentIDUser: 0,
     currentPage: '/',
     title: '',
-    isAdmin: false
+    isAdmin: false,
+    cart: []
 }
 
 app.engine('hbs', exphbs({

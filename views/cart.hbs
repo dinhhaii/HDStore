@@ -9,15 +9,17 @@
                     <tr>
                         <th>#</th>
                         <th>Tên</th>
-                        <th>Giảm giá</th>
+                        <th>Số lượng</th>
+                        <th>Giảm giá (%)</th>
                         <th>Giá</th>
                     </tr>
                 </thead>
                 <tbody>
-                {{#each products}}
+                {{#each cart}}
                     <tr>
-                        <td>{{id}}</td>
+                        <td>#</td>
                         <td>{{name}}</td>
+                        <td>{{numberofproduct}}</td>
                         <td>{{discount}}</td>
                         <td>{{price}}</td>
                     </tr>
@@ -26,20 +28,23 @@
                     <tr>
                         <th></th>
                         <th></th>
+                        <th></th>
                         <th>Tổng tiền:</th>
-                        <th>{{cart.discountedtotal}}</th>
+                        <th>{{sumbill}}</th>
                     </tr>
                     <tr>
+                        <th></th>
                         <th></th>
                         <th></th>
                         <th>Khuyến mãi:</th>
-                        <th>{{cart.discount}}</th>
+                        <th>{{discountbill}}</th>
                     </tr>
                     <tr>
                         <th></th>
                         <th></th>
+                        <th></th>
                         <th>Thanh toán:</th>
-                        <th>{{cart.total}}</th>
+                        <th>{{totalbill}}</th>
                     </tr>
                 </tfoot>
                 </tbody>
