@@ -1,6 +1,6 @@
 <div class="card card-nav-tabs mt-5">
     <div class="card-header card-header-success">
-        <h3><b>Giỏ hàng (ID: #1205)</b></h3>
+        <h3><b>Giỏ hàng (ID: {{cart.id}})</b></h3>
     </div>
     <div class="card-body ">
         <div class="row">
@@ -9,45 +9,40 @@
                     <tr>
                         <th>#</th>
                         <th>Tên</th>
-                        <th>Số lượng</th>
+                        <th>Giảm giá</th>
                         <th>Giá</th>
                     </tr>
                 </thead>
                 <tbody>
+                {{#each products}}
                     <tr>
-                        <td>1</td>
-                        <td>PUBG</td>
-                        <td>1</td>
-                        <td>500000 VNĐ</td>
+                        <td>{{id}}</td>
+                        <td>{{name}}</td>
+                        <td>{{discount}}</td>
+                        <td>{{price}}</td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>League of Legend</td>
-                        <td>4</td>
-                        <td>200000 VNĐ</td>
-                    </tr>
-                    <tr>
-                </tbody>
+                {{/each}}
                 <tfoot>
                     <tr>
                         <th></th>
                         <th></th>
                         <th>Tổng tiền:</th>
-                        <th>1300000 VNĐ</th>
+                        <th>{{cart.discountedtotal}}</th>
                     </tr>
                     <tr>
                         <th></th>
                         <th></th>
                         <th>Khuyến mãi:</th>
-                        <th>10%</th>
+                        <th>{{cart.discount}}</th>
                     </tr>
                     <tr>
                         <th></th>
                         <th></th>
                         <th>Thanh toán:</th>
-                        <th>1170000 VNĐ</th>
+                        <th>{{cart.total}}</th>
                     </tr>
                 </tfoot>
+                </tbody>
             </table>
         </div>
         <div class="row text-right">

@@ -35,9 +35,5 @@ module.exports = {
 
     latestproduct: (limit) => {
         return db.load(`select * from product as p1 where createddate = (select max(createddate) from product as p2 where p1.id = p2.id) order by createddate desc limit ${limit} offset 0`);
-    },
-
-    descendingviews: (limit) => {
-        return db.load(`SELECT * FROM product order by views desc limit ${limit} offset 0`);
     }
 }

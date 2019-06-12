@@ -1,0 +1,130 @@
+{{#section 'css'}}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+{{/section}}
+
+{{#section 'js'}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/js/fileinput.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/themes/fa/theme.min.js" ></script>
+<script>
+    $(function () {
+        $('#fuMain').fileinput({
+            theme: 'fa' 
+        });
+    })
+</script>
+{{/section}}
+
+<div class="card card-nav-tabs mt-5">
+    <div class="card-header card-header-success">
+        <div class="row">
+            <div class="col-6">
+                <h4 style="color: black"><b>Chỉnh sửa sản phẩm</b></h4>
+            </div>
+        </div>
+    </div>
+    {{#if error}}
+        <div class="alert alert-danger" role="alert">
+            Có lỗi xảy ra. <a href="/admin/product" class="alert-link">Quay trở lại</a>
+        </div>
+    {{else}}
+        <div class="card-body ">
+            <form class="contact-form" method="post" action="/admin/editproduct">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">ID sản phẩm</label>
+                            <input readonly type="text" class="form-control" name="id" value="{{product.id}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Tên sản phẩm</label>
+                            <input type="text" class="form-control" name="name" value="{{product.name}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <p class="bmd-label-floating">Hình ảnh</p>
+                            <div class="file-loading">
+                                <input class="form-control" id="fuMain" name="img" type="file" multiple value="{{product.img}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Nội dung</label>
+                            <input type="text" class="form-control" name="detail" value="{{product.detail}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Cấu hình</label>
+                            <input type="text" class="form-control" name="config" value="{{product.config}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <p class="bmd-label-floating">ID Thể loại</p>
+                            <select class="form-control" name="idcategory" value="{{product.idcategory}}"> 
+                                {{#each categories}}
+                                <option value="{{id}}">{{id}} là {{name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Giảm giá</label>
+                            <input type="text" class="form-control" name="discount" value="{{product.discount}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Số lượng</label>
+                            <input type="text" class="form-control" name="amount" value="{{product.amount}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Giá tiền</label>
+                            <input type="text" class="form-control" name="price" value="{{product.price}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <button class="btn btn-primary btn-raised" onclick="location.href='/admin/product';"  style="width: 120px">
+                            Trở lại
+                        </button>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary btn-raised" type="submit" formaction="/admin/deleteproduct" style="width: 120px"> 
+                            Xóa
+                        </button>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary btn-raised" type="submit" style="width: 120px">
+                            Lưu lại
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    {{/if}}
+</div>

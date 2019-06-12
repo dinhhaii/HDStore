@@ -1,0 +1,51 @@
+<div class="card card-nav-tabs mt-5">
+    <div class="card-header card-header-success">
+        <div class="row">
+            <div class="col-6">
+                <h4 style="color: black"><b>QUẢN LÝ SẢM PHẨM</b></h4>
+            </div>
+            <div class="col-6 text-right">
+                <a href="/admin/addproduct"><button class="btn btn-default btn-link" style="display: inline; margin-right:0;"><i class="fa fa-plus" style="color: black" aria-hidden="true"></i></button></a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body ">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Tên</th>
+                        <th>Hình ảnh</th>
+                        <th>Id thể loại</th>
+                        <th>Giảm giá</th>
+                        <th>Số lượng</th>
+                        <th>Giá tiền</th>
+                        <th>Tình trạng</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each products}}
+                    <tr>
+                        <td>{{this.id}}</td>
+                        <td>{{name}}</td>
+                        <td ><img style="width: 100px; hight: 70px;"  src="{{img}}"/></td>
+                        <td>{{idcategory}}</td>
+                        <td>{{discount}}</td>
+                        <td>{{amount}}</td>
+                        <td>{{price}}</td>
+                        <td>{{condition}}</td>
+                        <td class="text-right">
+                            <a href="/admin/editproduct/{{this.id}}" class="btn btn-warning">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

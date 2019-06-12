@@ -3,6 +3,7 @@ var router = express.Router();
 var categoryModel = require('../../models/category.model');
 var tagModel = require('../../models/tag.model');
 var userModel = require('../../models/user.model');
+var productModel = require('../../models/product.model');
 var hbscontent = require('../../app');
 
 router.get('/', (req, res) => {
@@ -235,6 +236,105 @@ router.post('/deleteuser', (req,res) => {
     userModel.delete(req.body.id)
     .then(() => {
         res.redirect('/admin/user');
+    })
+    .catch(err => {
+        console.log(err);
+        res.end('Error occured');
+    });
+    
+});
+
+// ================================>>> QUẢN LÝ SẢN PHẨM <<<================================
+
+router.get('/product', (req, res)=> {
+    productModel.all()
+    .then(rows => {
+        hbscontent['products'] = rows;
+        rows.forEach(element => {
+            userModel.update(element).then().catch(err => { console.log(err)});
+        });
+        res.render('admin/product/admin-product', hbscontent);
+    }).catch(err => {
+        console.log(err);
+    });
+})
+
+router.get('/addproduct', (req, res, next)=>{
+    categoryModel.all()
+    .then(rows => {
+        hbscontent['categories'] = rows;
+        res.render('admin/product/admin-addproduct', hbscontent);
+    })
+    .catch (next);
+});
+
+router.post('/addproduct', (req, res)=>{
+    var entity = req.body;
+    entity['createddate'] = new Date();
+    if (entity.amount == 0) {
+        entity['condition'] = "Hết hàng";
+    }
+    else {
+        entity['condition'] = "Còn hàng";
+    }
+    productModel.add(entity)
+    .then(() => {
+        res.redirect('/admin/product');
+    })
+    .catch(err => {
+        console.log(err);
+        res.end('Error occured');
+    });
+});
+
+router.get('/editproduct/:id', (req, res) => {
+    var id = req.params.id;
+    categoryModel.all()
+    .then(names => {
+            hbscontent['error'] = false;
+            hbscontent['categories'] = names;   
+            productModel.single(id)
+            .then(rows => {
+                hbscontent['product'] = rows[0];
+                res.render('admin/product/admin-editproduct', hbscontent);
+            })
+            .catch(err => {
+                hbscontent['error'] = true;
+                console.log(err);
+                res.end('Error occured2');
+            });
+    })
+    .catch(err => {
+        hbscontent['error'] = true;
+        console.log(err);
+        res.end('Error occured1');
+    });
+    
+});
+
+router.post('/editproduct', (req,res) => {
+    var entity = req.body;
+    if (entity.amount == 0) {
+        entity['condition'] = "Hết hàng";
+    }
+    else {
+        entity['condition'] = "Còn hàng";
+    }
+    productModel.update(entity)
+    .then(() => {
+        res.redirect('/admin/product');
+    })
+    .catch(err => {
+        console.log(err);
+        res.end('Error occured');
+    });
+    
+});
+
+router.post('/deleteproduct', (req,res) => {
+    productModel.delete(req.body.id)
+    .then(() => {
+        res.redirect('/admin/product');
     })
     .catch(err => {
         console.log(err);

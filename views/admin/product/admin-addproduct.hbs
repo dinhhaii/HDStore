@@ -1,0 +1,106 @@
+{{#section 'css'}}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+{{/section}}
+
+{{#section 'js'}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/js/fileinput.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/themes/fa/theme.min.js" ></script>
+<script>
+    $(function () {
+        $('#fuMain').fileinput({
+            theme: 'fa' 
+        });
+    })
+</script>
+{{/section}}
+
+<div class="card card-nav-tabs mt-5">
+    <div class="card-header card-header-success">
+        <div class="row">
+            <div class="col-6">
+                <h4 style="color: black"><b>Thêm sản phẩm</b></h4>
+            </div>
+        </div>
+    </div>
+    <div class="card-body ">
+            <form class="contact-form" method="post">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Nhập tên sản phẩm</label>
+                            <input type="text" class="form-control" name="name">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <p class="bmd-label-floating">Chọn hình ảnh</p>
+                            <div class="file-loading">
+                                <input class="form-control" id="fuMain" name="img" type="file" multiple>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Nhập nội dung</label>
+                            <input type="text" class="form-control" name="detail">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Nhập cấu hình</label>
+                            <input type="text" class="form-control" name="config">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <p class="bmd-label-floating">Chọn ID Thể loại</p>
+                            <select class="form-control" name="idcategory">
+                                {{#each categories}}
+                                <option value="{{id}}">{{id}} là {{name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Nhập giảm giá</label>
+                            <input type="text" class="form-control" name="discount">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Nhập số lượng</label>
+                            <input type="text" class="form-control" name="amount">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Nhập giá tiền</label>
+                            <input type="text" class="form-control" name="price">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 ml-auto mr-auto text-center">
+                        <button class="btn btn-primary btn-raised" type="submit">
+                            Thêm
+                        </button>
+                    </div>
+                </div>
+            </form>
+    </div>
+</div>
