@@ -5,6 +5,18 @@ module.exports = {
         return db.load('select * from product');
     },
 
+    allByCat: (id) => {
+        return db.load(`select * from product where ${id} = idcategory`);
+    },
+
+    pageByCat: (catID, limit, offset) => {
+        return db.load(`select * from product where idcategory = ${catID} limit ${limit} offset ${offset}`);
+    },
+
+    countByCat: catID => {
+        return db.load(`select count(*) as total from product where ${catID} = idcategory`)
+    },
+  
     add: (entity) => {
         return db.add('product', entity);
     },
@@ -21,11 +33,11 @@ module.exports = {
         return db.delete('product', 'id', id);
     },
 
-    getIDName: (name) => {
-        return db.load(`select id from product where name = ${name}`);
+    latestproduct: (limit) => {
+        return db.load(`select * from product as p1 where createddate = (select max(createddate) from product as p2 where p1.id = p2.id) order by createddate desc limit ${limit} offset 0`);
     },
 
-    getName: (id) => {
-        return db.load(`select name from product where id =${id}`)
+    descendingviews: (limit) => {
+        return db.load(`SELECT * FROM product order by views desc limit ${limit} offset 0`);
     }
 }

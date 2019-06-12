@@ -2,7 +2,7 @@
     <div class="section text-left">
         <div class="row">
             <div class="col-md-8 ml-2 mr-auto">
-                <h2 class="title">OVERWATCH STANDARD EDITION</h2>
+                <h2 class="title">{{product.name}}</h2>
                 <h5 class="description"></h5>
             </div>
         </div>
@@ -10,7 +10,7 @@
             <div class="row">
                 <!-- Picture -->
                 <div class="col-md-5">
-                    <img src="/img/bg2.jpg" alt="Rounded Image" class="rounded img-fluid">
+                    <img src="{{product.img}}" alt="Rounded Image" class="rounded img-fluid">
                 </div>
                 <!-- Info -->
                 <div class="col-md-7">
@@ -22,16 +22,38 @@
                     <p>Bilizard</p>
                     <!-- Tình trạng -->
                     <h4 class="info-title">Tình trạng:</h4>
-                    <p style="display: inline">Còn hàng</p>
+                    {{#if product.isOutOfStock}}
+                    <p style="display: inline" style="color: red">{{product.condition}}</p>
+                    {{else}}
+                    <p style="display: inline">{{product.condition}}</p>
+                    {{/if}}
                 </div>
             </div>
             <div class="row mt-2">
                 <div class="col-5">
                     <button class="btn btn-success btn-block">Mua hàng</button>
                 </div>   
-                <div class="col-3"><h3><del>850000 VNĐ</del></h3></div>
-                <div class="col-4"><h3><b>550000 VNĐ</b></h3></div>                            
+                {{#if product.isDiscounted}}
                 
+                <div class="col-3">
+                    <h3 style="color: orangered"><del>{{product.price}} VNĐ</del></h3>
+                </div>
+                <div class="col-4">
+                    <h3><b>{{product.promotionprice}} VNĐ </b></h3>
+                </div>
+                {{else}}
+                <div class="col-7">
+                    <h3><b>{{product.price}} VNĐ </b></h3>
+                </div>
+                {{/if}}                        
+                
+            </div>
+
+            <div class="row mt-2 ml-2">
+                <h4 class="info-title" style="padding: 0; margin: 0px 4px 0px 0px;">Tags:</h4>
+                {{#each producttags}}
+                <a href="/tag/{{idtag}}"><span class="badge badge-pill badge-secondary">{{name}}</span></a>
+                {{/each}}
             </div>
 
             <div class="row mt-3">
@@ -58,20 +80,10 @@
                     <div class="card-body ">
                         <div class="tab-content text-center">
                             <div class="tab-pane active" id="detail">
-                                <p> I will be the leader of a company that ends up being worth billions of dollars,
-                                    because I got the answers. I understand culture. I am the nucleus. I think
-                                    that&#x2019;s a responsibility that I have, to push possibilities, to show people,
-                                    this is the level that things could be at. I think that&#x2019;s a responsibility
-                                    that I have, to push possibilities, to show people, this is the level that things
-                                    could be at. </p>
+                                <p> {{product.detail}} </p>
                             </div>
                             <div class="tab-pane" id="config">
-                                <p> I think that&#x2019;s a responsibility that I have, to push possibilities, to show
-                                    people, this is the level that things could be at. I will be the leader of a company
-                                    that ends up being worth billions of dollars, because I got the answers. I
-                                    understand culture. I am the nucleus. I think that&#x2019;s a responsibility that I
-                                    have, to push possibilities, to show people, this is the level that things could be
-                                    at.</p>
+                                <p> {{product.config}}</p>
                             </div>
                         </div>
                     </div>

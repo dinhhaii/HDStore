@@ -34,6 +34,7 @@ app.use('/', require('./routes/index'));
 app.use('/login', require('./routes/login.route'));
 app.use('/signup', require('./routes/signup.route'));
 app.use('/category', require('./routes/category.route'));
+app.use('/product', require('./routes/product.route'));
 app.use('/admin', require('./routes/admin/admin.route'));
 
 app.listen(3000, () => {

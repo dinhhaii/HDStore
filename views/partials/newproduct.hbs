@@ -7,18 +7,33 @@
             {{#each newproducts}}
             <div class="col-4">
                 <div class="card bg-dark">
-                    <div class="card-body">
-                        <h4>PUBG</h4>
-                        <img src="{{img}}" height="100" width="150" alt="">
-                        <h4>Description</h4>
+                    <div class="card-body" style="height: 300px">
+                        <h4><strong>{{name}}</strong></h4>
+                        <a href="/product/{{id}}"><img src="{{img}}" style="width: 100%; height: 60%;" alt=""></a>
+                        <h6>{{condition}}</h6>
+                        <div class="row">                            
+                            {{#if isDiscounted}}
+                            <div class="col-6"><h4>{{promotionprice}} VND</h4></div>
+                            <div class="col-6"><h4 style="color: orangered"><del>{{price}} VND</del></h4></div>
+                            {{else}}
+                            <div class="col-6"><h4>{{price}} VND</h4></div>
+                            {{/if}}
+                        </div>
+                        
                     </div>
                     <div class="card-footer">
-                        <a href="/product/{{id}}" class="btn btn-danger">Chi tiết</a>
-                        <a class="btn btn-success">Mua</a>
+                        <div class="row" style="width: 100%;">
+                            <div class="col-6">
+                                <a class="btn btn-danger" href="/product/{{id}}" style="width: 100%;">Chi tiết</a>
+                            </div>
+                            <div class="col-6">
+                                <a class="btn btn-success" style="width: 100%;">Mua</a>
+                            </div>
+                        </div>                        
                     </div>
                 </div>
             </div>
-            {{/each}}
+            {{/each}} 
         </div>
 
 

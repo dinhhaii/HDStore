@@ -26,16 +26,6 @@ router.get('/:id', (req, res, next) => {
         productModel.pageByCat(id, limit, offset),
         productModel.countByCat(id)
     ]).then(([rows, count_rows]) => {   
-        
-        //Lấy tên writer và ngày khởi tạo bài viết
-        rows.forEach(element => {
-            userModel.single(element.idwriter).then(userrows => {
-                element['namewriter'] = userrows[0].name;
-                var dt = new Date(Date(userrows[0].createddate));
-                element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
-
-            })    
-        });
 
         var total = count_rows[0].total;
         var npages = Math.floor(total / limit);
@@ -47,10 +37,18 @@ router.get('/:id', (req, res, next) => {
             pages.push(obj);
         }
 
+        rows.forEach(element => {
+            if(element.discount != 0){
+                element['isDiscounted'] = true;
+                element['promotionprice'] = element.price * (100 - element.discount) / 100;
+            }
+            else{
+                element['isDiscounted'] = false;
+            }
+        });
+
         hbscontent['products'] = rows;
         hbscontent['idcategory'] = id;
-        hbscontent.isMainNavigationBar = true;
-        hbscontent.breadcrumbitemactive = hbscontent.title;
         hbscontent['pages'] = pages;
         hbscontent.currentPage = req.protocol + '://' + req.get('host') + req.originalUrl;
         
