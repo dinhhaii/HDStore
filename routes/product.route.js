@@ -51,9 +51,6 @@ router.get('/:id', (req, res, next) => {
             }).catch(next);
         }
     }).catch(next);
-
-    
-
 });
 
 module.exports = router;

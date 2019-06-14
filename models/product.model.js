@@ -13,6 +13,10 @@ module.exports = {
         return db.load(`select * from product where idcategory = ${catID} limit ${limit} offset ${offset}`);
     },
 
+    pageByTag: (proID, limit, offset) => {
+        return db.load(`select * from product where id = ${proID} limit ${limit} offset ${offset}`);
+    },
+
     countByCat: catID => {
         return db.load(`select count(*) as total from product where ${catID} = idcategory`)
     },

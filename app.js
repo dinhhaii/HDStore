@@ -34,7 +34,7 @@ app.use('/', express.static(publicPath));
 
 //Routing
 app.use('/', require('./routes/index'));
-
+app.use('/tag',require('./routes/tag.route'));
 app.use('/login', require('./routes/login.route'));
 app.use('/signup', require('./routes/signup.route'));
 app.use('/category', require('./routes/category.route'));

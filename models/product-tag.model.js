@@ -17,7 +17,7 @@ module.exports = {
         return db.load(`select * from product_tag as pt, product as p where pt.idtag = ${tagID} and pt.idproduct = p.id limit ${limit} offset ${offset}`);
     },
 
-    countproductByTag: tagID => {
+    countproductByTag: (tagID) => {
         return db.load(`select count(*) as total from product_tag where ${tagID} = idtag`)
     },
 

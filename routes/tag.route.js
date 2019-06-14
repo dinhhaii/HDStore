@@ -1,21 +1,22 @@
 var express = require('express');
 var router = express.Router();
 
-var userModel = require('../models/user.model');
 var productModel = require('../models/product.model');
-var categoryModel = require('../models/category.model');
+var tagModel = require('../models/tag.model');
 var hbscontent = require('../app');
+var product_tagModel = require('../models/product-tag.model');
 
-
-router.get('/:id', (req, res, next) => {
+router.get('/:id', (req, res) => {
     var id = req.params.id;
-    //Lấy name của category để làm title
-
-    categoryModel.single(id).then(catrows => {
+    tagModel.single(id).then(catrows => {
         if (catrows.length > 0) {
             hbscontent.title = catrows[0].name;         
         }
-    }).catch(next);
+    })
+    .catch(err => {
+        console.log(err);
+        res.end('Error occured1');
+    });
 
     var page = req.query.page || 1;
     if(page < 1) page = 1;
@@ -23,10 +24,9 @@ router.get('/:id', (req, res, next) => {
     var offset = (page - 1) * limit;
     
     Promise.all([
-        productModel.pageByCat(id, limit, offset),
-        productModel.countByCat(id)
+        product_tagModel.pageproductByTag(id, limit, offset),
+        product_tagModel.countproductByTag(id)
     ]).then(([rows, count_rows]) => {   
-
         var total = count_rows[0].total;
         var npages = Math.floor(total / limit);
         if(total % limit > 0) npages++;
@@ -46,15 +46,18 @@ router.get('/:id', (req, res, next) => {
                 element['isDiscounted'] = false;
             }
         });
-
+        
         hbscontent['products'] = rows;
-        hbscontent['idcategory'] = id;
-        hbscontent['pages'] = pages;
+        hbscontent['idtag'] = id;
+        hbscontent['pages'] = pages;    
         hbscontent.currentPage = req.protocol + '://' + req.get('host') + req.originalUrl;
         
-        res.render('categorylist', hbscontent);
+        res.render('tag', hbscontent);
     })
-    .catch(next);   
+    .catch(err => {
+        console.log(err);
+        res.end('Error occured3');
+    });
 });
 
 module.exports = router;
