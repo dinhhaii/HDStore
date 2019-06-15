@@ -26,6 +26,7 @@ router.post('/', (req, res, next) => {
                     hbscontent.isLogin = true;
                     hbscontent.username = entity.name;
                     hbscontent.currentIDUser = entity.id;
+                    hbscontent.cart = [];
                     if(entity.position == 'admin'){
                         hbscontent.isAdmin = true;
                     }

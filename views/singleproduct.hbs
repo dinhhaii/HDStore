@@ -1,13 +1,14 @@
 <div class="container">
     <div class="section text-left">
         <div class="row">
-            <div class="col-md-8 ml-2 mr-auto">
+            <div class="col-md-8 ml-2 mr-auto" style="padding-top: 5px;">
                 <h2 class="title">{{product.name}}</h2>
                 <h5 class="description"></h5>
             </div>
         </div>
         <div class="features">
             <div class="row">
+                <form id="myform" method="POST" action="/cart/{{product.id}}"></form>
                 <!-- Picture -->
                 <div class="col-md-5">
                     <img src="{{product.img}}" alt="Rounded Image" class="rounded img-fluid">
@@ -25,14 +26,13 @@
                     <p style="display: inline">{{product.condition}}</p>
                     {{/if}}
                     <h4 class="info-title">Số lượng:</h4>
-                    <input type="number" class="form-control" style="width: 50px;" value="1" name="amount">
+                    <input type="number" class="form-control" style="width: 50px;" value="1" name="numberofproduct" form="myform">
                     <h4 class="info-title">Giá:</h4>
                 </div>
             </div>
             <div class="row mt-2">
                 <div class="col-5">
-                    <a class="btn btn-success btn-block" href="/cart/{{product.id}}">Mua hàng</a>
-                
+                    <button form="myform" type="submit" class="btn btn-success btn-block">Thêm vào giỏ hàng</button>                
                 </div>   
                 {{#if product.isDiscounted}}
                 
@@ -57,10 +57,25 @@
                 {{/each}}
             </div>
 
+            <div class="row mt-2 ml-2">
+                <!-- {{#unless checkInputNumberOfProduct}}
+                <div class="alert alert-danger" style="width: 100%">
+                    <div class="container">
+                        <div class="alert-icon">
+                            <i class="material-icons">warning</i>
+                        </div>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                        </button>
+                        Số lượng sản phẩm mua vượt quá số lượng tồn. Vui lòng nhập lại!
+                    </div>
+                </div>
+                {{/unless}} -->
+            </div>
+
             <div class="row mt-3">
                 <div class="card card-nav-tabs">
                     <div class="card-header card-header-danger">
-                        <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
                         <div class="nav-tabs-navigation">
                             <div class="nav-tabs-wrapper">
                                 <ul class="nav nav-tabs" data-tabs="tabs">   

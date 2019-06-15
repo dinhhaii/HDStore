@@ -9,7 +9,7 @@ var hbscontent = require('../app');
 
 router.get('/:id', (req, res, next) => {
     var id = req.params.id; 
-
+    hbscontent.currentPage = req.protocol + '://' + req.get('host') + req.originalUrl;
     productModel.single(id)
     .then(products => {
         if(products.length > 0){  
@@ -50,7 +50,7 @@ router.get('/:id', (req, res, next) => {
                 }
             }).catch(next);
         }
-    }).catch(next);
+    }).catch(next); 
 });
 
 module.exports = router;

@@ -12,39 +12,44 @@
                         <th>Số lượng</th>
                         <th>Giảm giá (%)</th>
                         <th>Giá</th>
+                        <th style="width: 50px"></th>
                     </tr>
                 </thead>
                 <tbody>
-                {{#each cart}}
+                    {{#each cart}}
                     <tr>
                         <td>#</td>
                         <td>{{name}}</td>
                         <td>{{numberofproduct}}</td>
                         <td>{{discount}}</td>
                         <td>{{price}}</td>
+                        <td><a href="/cart/remove/{{id}}"><i class="fa fa-trash" style="color: red"></i></a></td>
                     </tr>
-                {{/each}}
+                    {{/each}}
                 <tfoot>
                     <tr>
                         <th></th>
                         <th></th>
                         <th></th>
                         <th>Tổng tiền:</th>
-                        <th>{{sumbill}}</th>
+                        <th id="sumbill">{{sumbill}}</th>
+                        <th></th>
                     </tr>
                     <tr>
                         <th></th>
                         <th></th>
                         <th></th>
                         <th>Khuyến mãi:</th>
-                        <th>{{discountbill}}</th>
+                        <th id="sumbill">{{discountbill}}</th>
+                        <th></th>
                     </tr>
                     <tr>
                         <th></th>
                         <th></th>
                         <th></th>
                         <th>Thanh toán:</th>
-                        <th>{{totalbill}}</th>
+                        <th id="totalbill">{{totalbill}}</th>
+                        <th></th>
                     </tr>
                 </tfoot>
                 </tbody>
@@ -52,8 +57,9 @@
         </div>
         <div class="row text-right">
             <div class="col">
-                <button class="btn btn-danger"><i class="fa fa-arrow-left" aria-hidden="true"></i>  Trở về</button>
-                <button class="btn btn-success"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>  Thanh toán</button>
+                <a href="{{currentPage}}" class="btn btn-danger"><i class="fa fa-arrow-left" aria-hidden="true"></i> Trở về</a>
+                <button class="btn btn-success"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Thanh
+                    toán</button>
             </div>
 
         </div>

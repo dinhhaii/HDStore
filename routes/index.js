@@ -12,7 +12,7 @@ router.get('/', (req,res,next) => {
     }
     else{
         hbscontent.title = "Trang chủ";
-        hbscontent.cart = [];
+        hbscontent.currentPage = req.protocol + '://' + req.get('host') + req.originalUrl;
         Promise.all([
             categoryModel.all(),
             productModel.latestproduct(9),
@@ -23,6 +23,16 @@ router.get('/', (req,res,next) => {
 
             hbscontent['carouselproducts'] = carouselproducts;
             hbscontent['categories'] = categories;
+
+            newproducts.forEach(element => {
+                if(element.discount != 0){
+                    element['isDiscounted'] = true;
+                    element['promotionprice'] = element.price * (100 - element.discount) / 100;
+                }
+                else{
+                    element['isDiscounted'] = false;
+                }
+            });
             hbscontent['newproducts'] = newproducts;           
             
             res.render('index', hbscontent);
@@ -42,28 +52,57 @@ router.post('/logout', (req, res, next) => {
 })
 
 router.get('/contact', (req, res) => {
-    res.render('contact');
+    hbscontent.title = "Liên lạc";
+    hbscontent.currentPage = req.protocol + '://' + req.get('host') + req.originalUrl;
+    res.render('contact', hbscontent);
 });
 
 router.get('/cart', (req, res) => {
-    res.render('cart', hbscontent);
-});
-
-router.get('/cart/:productid', (req, res, next) => {
-    var productid = req.params.productid;
-    productModel.single(productid)
-    .then(rows => {
-        hbscontent.cart.push(rows[0]);
-    }).catch(next);
-
     var sum = 0;
     hbscontent.cart.forEach(element => {
-        sum += element.price * (100 - element.discount) / 100;
+        sum += element.numberofproduct * element.price * (100 - element.discount) / 100;
     });
     hbscontent['sumbill'] = sum;
     hbscontent['discountbill'] = 0;
     hbscontent['totalbill'] = hbscontent['sumbill'] * (100 - hbscontent['discountbill']) / 100;
 
+    res.render('cart', hbscontent);
+});
+
+router.post('/cart/:productid', (req, res, next) => {
+    var productid = req.params.productid;
+    console.log(req.body);
+    var numberofproduct = req.body.numberofproduct;
+    if(numberofproduct == null || numberofproduct == ''){
+        numberofproduct = 1;
+    }
+    else{
+        numberofproduct = parseInt(numberofproduct);
+    }
+    hbscontent['checkInputNumberOfProduct'] = true;
+    productModel.single(productid)
+        .then(rows => {
+            var product = rows[0];
+            if (numberofproduct > product.amount) {
+                hbscontent['checkInputNumberOfProduct'] = false;
+            }
+            if(hbscontent['checkInputNumberOfProduct']){
+                res.redirect('/cart');
+            }else{
+                res.redirect(hbscontent.currentPage);
+            }
+            product['numberofproduct'] = numberofproduct;
+            hbscontent.cart.push(product);
+        }).catch(next);   
+});
+
+router.get('/cart/remove/:productid', (req, res, next) => {
+    var productid = req.params.productid;
+    for(var i =0;i<hbscontent.cart.length;i++){
+        if(hbscontent.cart[i].id == productid){
+            hbscontent.cart.splice(i,1);
+        }
+    }    
     res.redirect('/cart');
 });
 
