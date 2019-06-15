@@ -9,8 +9,12 @@ module.exports = {
         return db.add('detailcart', entity);
     },
     
-    single: (idcart) => {
+    findIDCart: (idcart) => {
         return db.load(`select * from detailcart where idcart = ${idcart}`);
+    },
+
+    findIDProduct: (idproduct) => {
+        return db.load(`select * from detailcart where idproduct = ${idproduct}`);
     },
 
     update: (entity) => {

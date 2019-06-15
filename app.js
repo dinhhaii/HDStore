@@ -17,7 +17,8 @@ var hbscontent = {
     currentPage: '/',
     title: '',
     isAdmin: false,
-    cart: []
+    cart: [],
+    paymentsuccess: false
 }
 
 app.engine('hbs', exphbs({
@@ -40,6 +41,7 @@ app.use('/signup', require('./routes/signup.route'));
 app.use('/category', require('./routes/category.route'));
 app.use('/product', require('./routes/product.route'));
 app.use('/admin', require('./routes/admin/admin.route'));
+app.use('/cart', require('./routes/cart.route'));
 
 app.listen(3000, () => {
     console.log("Web Server running on Port 3000");

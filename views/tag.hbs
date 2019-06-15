@@ -19,15 +19,13 @@
                         </div>
                         
                     </div>
-                    <div class="card-footer">
-                        <div class="row" style="width: 100%;">
-                            <div class="col-6">
-                                <a class="btn btn-danger" href="/product/{{id}}" style="width: 100%;">Chi tiết</a>
-                            </div>
-                            <div class="col-6">
-                                <a class="btn btn-success" style="width: 100%;">Mua</a>
-                            </div>
-                        </div>                        
+                    <div class="card-footer" style="padding-top: 5px;">
+                        <div style="margin: 0; width: 100%;">
+                                <form method="POST" action="/cart/{{id}}">
+                                    <button type="submit" class="btn btn-success" style="width: 45%; float: left;">Mua</button>
+                                </form>                          
+                                <a class="btn btn-danger" href="/product/{{id}}" style="width: 45%; float: right">Chi tiết</a>
+                        </div>
                     </div>
                 </div>
             </div>

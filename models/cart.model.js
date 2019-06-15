@@ -21,7 +21,7 @@ module.exports = {
         return db.delete('cart', 'id', id);
     },
 
-    findIdUser: (iduser) => {
-        return db.load(`select * from cart where iduser= ${iduser}`);
-    } 
+    descCart: () => {
+        return db.load('SELECT * FROM cart ORDER BY id desc');
+    }
 }

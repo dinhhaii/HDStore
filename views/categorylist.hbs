@@ -21,8 +21,10 @@
                     </div>
                     <div class="card-footer" style="padding-top: 5px;">
                         <div style="margin: 0; width: 100%;">
-                            <a class="btn btn-danger" href="/product/{{id}}" style="width: 45%; float: right">Chi tiết</a>
-                            <a class="btn btn-success" style="width: 45%; float: left;">Mua</a>
+                                <form method="POST" action="/cart/{{id}}">
+                                    <button type="submit" class="btn btn-success" style="width: 45%; float: left;">Mua</button>
+                                </form>                          
+                                <a class="btn btn-danger" href="/product/{{id}}" style="width: 45%; float: right">Chi tiết</a>
                         </div>
                     </div>
                 </div>
