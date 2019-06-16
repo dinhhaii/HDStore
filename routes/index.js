@@ -3,6 +3,7 @@ var router = express.Router();
 var hbscontent = require('../app');
 var categoryModel = require('../models/category.model');
 var productModel = require('../models/product.model');
+var userModel = require('../models/user.model');
 
 router.get('/', (req,res,next) => {
     if(hbscontent.isAdmin == true){
@@ -43,6 +44,70 @@ router.get('/', (req,res,next) => {
     }
     
 });
+
+router.get('/forgotpassword', (req, res) => {
+    res.render('forgotpassword', {
+        layout: false,
+        title: "Quên mật khẩu",
+        isErrorEmail: false,
+        isErrorConfirmpassword: false,
+        isErrorFinish: false
+    });
+});
+
+router.post('/forgotpassword', (req, res, next) => {
+    var account = req.body;
+    console.log(account);
+    userModel.findByUsername(account.username)
+    .then(rows => {
+        if (rows.length > 0)
+        {   
+            console.log(rows);
+            var entity = rows[0];
+            if (entity.email != account.email)
+            {
+                res.render('forgotpassword', {
+                    layout: false,
+                    isErrorFinish: false,
+                    isErrorEmail: true,
+                    isErrorConfirmpassword: false,
+                });
+            }
+            else 
+            {
+                if (account.password != account.confirmpassword)
+                {
+                    res.render('forgotpassword', {
+                        layout: false,
+                        isErrorFinish: false,
+                        isErrorEmail: false,
+                        isErrorConfirmpassword: true,
+                    });
+                }
+                else 
+                {
+                    entity.password = account.password;
+                    delete entity['confirmpassword'];
+                    console.log(entity);
+                    userModel.update(entity).then().catch(next);
+                    res.redirect('/login');
+                }
+            }
+            
+        }
+        else 
+        {
+            res.render('forgotpassword', {
+                layout: false,
+                isErrorFinish: true,
+                isErrorEmail: false,
+                isErrorConfirmpassword: false,
+            });
+        }
+        
+    })
+    .catch(next);
+})
 
 router.post('/logout', (req, res, next) => {
     hbscontent.isLogin = false;

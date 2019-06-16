@@ -40,7 +40,6 @@ router.post('/addcategory', (req, res)=>{
     var entity = req.body;
     entity['totalproduct'] = 0;
     entity['createddate'] = new Date();
-
     categoryModel.add(entity)
     .then(() => {
         res.redirect('/admin/category');
@@ -270,6 +269,8 @@ router.get('/addproduct', (req, res, next)=>{
 
 router.post('/addproduct', (req, res)=>{
     var entity = req.body;
+    entity['img'] = "/img/bg-img/" + entity.fuMain;
+    console.log(entity);
     entity['createddate'] = new Date();
     if (entity.amount == 0) {
         entity['condition'] = "Hết hàng";
@@ -277,6 +278,7 @@ router.post('/addproduct', (req, res)=>{
     else {
         entity['condition'] = "Còn hàng";
     }
+    delete entity['fuMain'];
     productModel.add(entity)
     .then(() => {
         res.redirect('/admin/product');
