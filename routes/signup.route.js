@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
         res.redirect('/');
     }
     else{
-        res.render('login', {
+        res.render('signup', {
             layout: false,
             title: "Đăng kí",
             isErrorSignup: false

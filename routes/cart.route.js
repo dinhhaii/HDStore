@@ -56,7 +56,6 @@ router.get('/remove/:productid', (req, res, next) => {
 
 router.get('/payment', (req, res, next) => {
     var productlist = hbscontent.cart;
-    console.log(productlist);
     var cart = {
         iduser: hbscontent.currentIDUser,
         idpayment: 3,
@@ -65,7 +64,7 @@ router.get('/payment', (req, res, next) => {
         discountedtotal: hbscontent.sumbill,
         total: hbscontent.totalbill        
     }
-    console.log(cart);
+
     cartModel.add(cart)
     .then(() => {
         cartModel.descCart()

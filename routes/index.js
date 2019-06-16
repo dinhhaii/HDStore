@@ -10,7 +10,7 @@ router.get('/', (req,res,next) => {
     }
     else{
         hbscontent.title = "Trang chủ";
-        if(hbscontent['paymentsuccess'] = true){
+        if(hbscontent['paymentsuccess'] == true){
             hbscontent['paymentsuccess'] = false;
             hbscontent.cart = [];
         }
