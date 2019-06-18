@@ -4,8 +4,9 @@ var hbscontent = require('../app');
 var productModel = require('../models/product.model');
 var cartModel = require('../models/cart.model');
 var detailCartModel = require('../models/detailcart.model');
+var auth = require('../middlewares/auth');
 
-router.get('/', (req, res) => {
+router.get('/', auth, (req, res) => {
     var sum = 0;
     
     hbscontent.cart.forEach(element => {
@@ -24,17 +25,18 @@ router.get('/', (req, res) => {
     res.render('cart', hbscontent);
 });
 
-router.post('/:productid', (req, res, next) => {
+router.post('/:productid', auth, (req, res, next) => {
     var productid = req.params.productid;
     console.log(req.body);
     var numberofproduct = req.body.numberofproduct;
+    console.log(numberofproduct == null);
     if(numberofproduct == null || numberofproduct == ''){
         numberofproduct = 1;
     }
     else{
         numberofproduct = parseInt(numberofproduct);
     }
-
+    hbscontent['isWrongNumberProduct'] = false;
     productModel.single(productid)
         .then(rows => {
             var product = rows[0];

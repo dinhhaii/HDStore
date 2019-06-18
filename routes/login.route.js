@@ -31,7 +31,7 @@ router.post('/', (req, res, next) => {
                         hbscontent.isAdmin = true;
                     }
                     // res.render('index', hbscontent);
-                    res.redirect('/');
+                    res.redirect('/login');
                 }
                 else {
                     res.render('login',{

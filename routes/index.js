@@ -6,6 +6,9 @@ var productModel = require('../models/product.model');
 var userModel = require('../models/user.model');
 
 router.get('/', (req,res,next) => {
+    if(hbscontent.isLogin == undefined){
+        hbscontent.isLogin = false;
+    }
     if(hbscontent.isAdmin == true){
         res.redirect('/admin');
     }
