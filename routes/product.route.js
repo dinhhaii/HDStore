@@ -9,6 +9,12 @@ var hbscontent = require('../app');
 
 router.get('/:id', (req, res, next) => {
     var id = req.params.id; 
+    if(hbscontent['isWrongNumberProduct'] == true){
+        hbscontent['checkInputNumberOfProduct'] = false;
+        hbscontent['isWrongNumberProduct'] = false;
+    }else{
+        hbscontent['checkInputNumberOfProduct'] = true;
+    }
     hbscontent.currentPage = req.protocol + '://' + req.get('host') + req.originalUrl;
     productModel.single(id)
     .then(products => {

@@ -38,6 +38,12 @@ router.get('/:id', (req, res, next) => {
         }
 
         rows.forEach(element => {
+            if(element.condition == "Hết hàng"){
+                element['isOutOfStock'] = true;
+            }
+            else{
+                element['isOutOfStock'] = false;
+            }
             if(element.discount != 0){
                 element['isDiscounted'] = true;
                 element['promotionprice'] = element.price * (100 - element.discount) / 100;

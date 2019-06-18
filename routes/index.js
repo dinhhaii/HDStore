@@ -28,6 +28,14 @@ router.get('/', (req,res,next) => {
             hbscontent['categories'] = categories;
 
             newproducts.forEach(element => {
+                //Kiem tra tinh trang
+                if(element.condition == "Hết hàng"){
+                    element['isOutOfStock'] = true;
+                }
+                else{
+                    element['isOutOfStock'] = false;
+                }
+                
                 if(element.discount != 0){
                     element['isDiscounted'] = true;
                     element['promotionprice'] = element.price * (100 - element.discount) / 100;

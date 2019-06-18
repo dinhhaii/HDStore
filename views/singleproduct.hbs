@@ -21,7 +21,7 @@
                     <!-- Tình trạng -->
                     <h4 class="info-title">Tình trạng:</h4>
                     {{#if product.isOutOfStock}}
-                    <p style="display: inline" style="color: red">{{product.condition}}</p>
+                    <p style="display: inline; color: red"><b>{{product.condition}}</b></p>
                     {{else}}
                     <p style="display: inline">{{product.condition}}</p>
                     {{/if}}
@@ -58,7 +58,8 @@
             </div>
 
             <div class="row mt-2 ml-2">
-                <!-- {{#unless checkInputNumberOfProduct}}
+                {{#if checkInputNumberOfProduct}}
+                {{else}}
                 <div class="alert alert-danger" style="width: 100%">
                     <div class="container">
                         <div class="alert-icon">
@@ -70,7 +71,7 @@
                         Số lượng sản phẩm mua vượt quá số lượng tồn. Vui lòng nhập lại!
                     </div>
                 </div>
-                {{/unless}} -->
+                {{/if}}
             </div>
 
             <div class="row mt-3">

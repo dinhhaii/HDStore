@@ -7,6 +7,7 @@ var detailCartModel = require('../models/detailcart.model');
 
 router.get('/', (req, res) => {
     var sum = 0;
+    
     hbscontent.cart.forEach(element => {
         sum += element.numberofproduct * element.price * (100 - element.discount) / 100;
     });
@@ -14,6 +15,12 @@ router.get('/', (req, res) => {
     hbscontent['discountbill'] = 0;
     hbscontent['totalbill'] = hbscontent['sumbill'] * (100 - hbscontent['discountbill']) / 100;
 
+    if(hbscontent['isSuccessPayment'] == true){
+        hbscontent['paymentsuccess'] = true;
+        hbscontent['isSuccessPayment'] = false;
+    }else {
+        hbscontent['paymentsuccess'] = false;
+    }
     res.render('cart', hbscontent);
 });
 
@@ -27,20 +34,23 @@ router.post('/:productid', (req, res, next) => {
     else{
         numberofproduct = parseInt(numberofproduct);
     }
-    hbscontent['checkInputNumberOfProduct'] = true;
+
     productModel.single(productid)
         .then(rows => {
             var product = rows[0];
             if (numberofproduct > product.amount) {
-                hbscontent['checkInputNumberOfProduct'] = false;
+                hbscontent['isWrongNumberProduct'] = true;
             }
-            if(hbscontent['checkInputNumberOfProduct']){
+
+            if(hbscontent['isWrongNumberProduct'] == false){
+                product['numberofproduct'] = numberofproduct;
+                hbscontent.cart.push(product);
                 res.redirect('/cart');
-            }else{
+            }
+            else{
                 res.redirect(hbscontent.currentPage);
             }
-            product['numberofproduct'] = numberofproduct;
-            hbscontent.cart.push(product);
+            
         }).catch(next);   
 });
 
@@ -75,11 +85,10 @@ router.get('/payment', (req, res, next) => {
                     idcart: newestCart.id,
                     idproduct: productlist[i].id
                 }
-                detailCartModel.add(entity).then(() => {
-                    hbscontent['paymentsuccess'] = true;
-                    res.redirect('/cart');
-                }).catch(next);
-            }                
+                detailCartModel.add(entity).then().catch(next);
+            }     
+            hbscontent['isSuccessPayment'] = true;
+            res.redirect('/cart');           
         })
         .catch(next);
     })

@@ -42,6 +42,7 @@ app.use('/category', require('./routes/category.route'));
 app.use('/product', require('./routes/product.route'));
 app.use('/admin', require('./routes/admin/admin.route'));
 app.use('/cart', require('./routes/cart.route'));
+app.use('/search',require('./routes/search.route'));
 
 app.listen(3000, () => {
     console.log("Web Server running on Port 3000");

@@ -8,7 +8,11 @@
                     <div class="card-body" style="height: 300px">
                         <h4><strong>{{name}}</strong></h4>
                         <a href="/product/{{id}}"><img src="{{img}}" style="width: 100%; height: 60%;" alt=""></a>
+                        {{#if isOutOfStock}}
+                        <h6 style="color: rgb(255, 94, 0)"><b>{{condition}}</b></h6>
+                        {{else}}
                         <h6>{{condition}}</h6>
+                        {{/if}}
                         <div class="row">                            
                             {{#if isDiscounted}}
                             <div class="col-6"><h4>{{promotionprice}} VND</h4></div>
