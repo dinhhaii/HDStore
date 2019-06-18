@@ -7,7 +7,7 @@ router.get('/', (req, res, next) =>{
     var content = hbscontent['keyword'];
     var page = req.query.page || 1;
     if(page < 1) page = 1;
-    var limit = 5;
+    var limit = 3;
     var offset = (page - 1) * limit;
 
     Promise.all([
@@ -16,14 +16,20 @@ router.get('/', (req, res, next) =>{
     ]).then(([searchResults,count_searchResults])  => {
         console.log(searchResults);
         searchResults.forEach(element => {
-            userModel.single(element.idwriter).then(userrows => {
-                element['namewriter'] = userrows[0].name;
-                var dt = new Date(Date(userrows[0].createddate));
-                element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
-
-            })    
+            if(element.condition == "Hết hàng"){
+                element['isOutOfStock'] = true;
+            }
+            else{
+                element['isOutOfStock'] = false;
+            }
+            if(element.discount != 0){
+                element['isDiscounted'] = true;
+                element['promotionprice'] = element.price * (100 - element.discount) / 100;
+            }
+            else{
+                element['isDiscounted'] = false;
+            }
         });
-
         var total = count_searchResults[0].total;
         console.log(total);
         var npages = Math.floor(total / limit);
@@ -45,8 +51,8 @@ router.get('/', (req, res, next) =>{
     
 })
 
-router.product('/', (req, res, next) =>{
-    hbscontent['keyword'] = req.body.contentSearch;
+router.post('/', (req, res, next) =>{
+    hbscontent['keyword'] = req.body.keyword;
     res.redirect('/search');
 })
 

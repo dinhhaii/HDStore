@@ -39,5 +39,11 @@ module.exports = {
 
     latestproduct: (limit) => {
         return db.load(`select * from product as p1 where createddate = (select max(createddate) from product as p2 where p1.id = p2.id) order by createddate desc limit ${limit} offset 0`);
+    },
+    pagingSearch: (keyword, limit, offset) => {
+        return db.load(`select *, match(name, detail, config) against ('${keyword}') as score from product where match (name, detail, config) against ('${keyword}') > 0 ORDER BY score limit ${limit} offset ${offset}`)
+    },
+    countSearchResult: (keyword) => {
+        return db.load(`select count(*) as total from product where match (name, detail, config) against ('${keyword}') > 0`)
     }
 }
