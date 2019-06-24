@@ -220,6 +220,7 @@ router.get('/edituser/:id', (req, res) => {
 
 router.post('/edituser', (req,res) => {
     var entity = req.body;
+    console.log(entity);
     userModel.update(entity)
     .then(() => {
         res.redirect('/admin/user');
@@ -269,16 +270,15 @@ router.get('/addproduct', (req, res, next)=>{
 
 router.post('/addproduct', (req, res)=>{
     var entity = req.body;
-    entity['img'] = "/img/bg-img/" + entity.fuMain;
-    console.log(entity);
-    entity['createddate'] = new Date();
+    entity['img'] = "/img/" + entity.filename;
+    delete entity['fuMain'];
+    delete entity['filename'];
     if (entity.amount == 0) {
         entity['condition'] = "Hết hàng";
     }
     else {
         entity['condition'] = "Còn hàng";
     }
-    delete entity['fuMain'];
     productModel.add(entity)
     .then(() => {
         res.redirect('/admin/product');
@@ -316,6 +316,9 @@ router.get('/editproduct/:id', (req, res) => {
 
 router.post('/editproduct', (req,res) => {
     var entity = req.body;
+    entity['img'] = "/img/" + entity.filename;
+    delete entity['fuMain'];
+    delete entity['filename'];
     if (entity.amount == 0) {
         entity['condition'] = "Hết hàng";
     }

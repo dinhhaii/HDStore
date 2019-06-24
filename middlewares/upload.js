@@ -5,21 +5,21 @@ var storage = multer.diskStorage({
       cb(null, './assets/img/');
     },
     filename: function (req, file, cb) {
-        cb(null, file.originalname);
+      cb(null, file.originalname);
     }
 })
    
 var upload = multer({ storage });
 
 module.exports = function (app) {  
-    app.post('/addproduct', (req, res, next) => {
+    app.post('/upload', (req, res, next) => {
         upload.array('fuMain')(req, res, err => {
             if (err) {
                 return res.json({
                     error: err.message
                 });
             }
-            
+
             res.json({});   
         })
     })

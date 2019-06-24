@@ -30,6 +30,7 @@ app.engine('hbs', exphbs({
 }));
 
 app.set('view engine', 'hbs');
+require('./middlewares/upload')(app);
 
 app.use('/', express.static(publicPath));
 
